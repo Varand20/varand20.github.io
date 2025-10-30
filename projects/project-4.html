@@ -130,7 +130,7 @@
                     Selenium adalah <strong>framework <i>open-source</i></strong> yang portabel yang digunakan untuk <strong>otomatisasi pengujian aplikasi web</strong>.
                 </p>
                 <p>
-                    Secara sederhana, Selenium bukanlah satu alat saja, melainkan sebuah <strong>rangkaian (suite) perangkat lunak</strong> yang memungkinkan Anda menulis skrip untuk mengontrol tindakan browser secara otomatis. Anda bisa memerintahkan skrip untuk membuka browser, mengeklik tombol, mengisi formulir, dan memverifikasi teks di halaman, seolah-olah dilakukan oleh pengguna sungguhan.
+                    Secara sederhana, Selenium bukanlah satu alat saja, melainkan sebuah <strong>rangkaian (suite) perangkat lunak</strong> yang memungkinkan menulis skrip untuk mengontrol tindakan browser secara otomatis. Dengan selenium, kita bisa memerintahkan skrip untuk membuka browser, mengeklik tombol, mengisi formulir, dan memverifikasi teks di halaman, seolah-olah dilakukan oleh pengguna sungguhan.
                 </p>
                 <p>
                     Tujuan utamanya adalah untuk <i>software testing</i> (pengujian perangkat lunak), khususnya <i>automated regression testing</i> (memastikan fitur lama tidak rusak setelah ada perubahan kode baru).
@@ -144,7 +144,7 @@
                     </li>
                     <li class="flex items-start">
                         <i data-feather="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-1.5 flex-shrink-0"></i>
-                        <span><strong>Dukungan Multi-Bahasa:</strong> Anda bisa menulis skrip tes menggunakan <strong>Python, Java, C#, JavaScript,</strong> atau Ruby.</span>
+                        <span><strong>Dukungan Multi-Bahasa:</strong> Bisa menulis skrip tes menggunakan <strong>Python, Java, C#, JavaScript,</strong> atau Ruby.</span>
                     </li>
                     <li class="flex items-start">
                         <i data-feather="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-1.5 flex-shrink-0"></i>
@@ -246,78 +246,146 @@
             <!-- Bagian Konten: Contoh Praktikum (Hidden) -->
             <section id="praktikum" class="content-section prose prose-custom prose-lg max-w-none hidden">
                 
-                <h2>Contoh Praktikum: Login Sederhana</h2>
+                <h2>Melakukan test untuk website Saucedemo</h2>
                 <p>
-                    Berikut adalah contoh skrip Selenium dasar menggunakan <strong>Python</strong>. Skenario ini akan melakukan langkah-langkah berikut:
+                    Berikut adalah contoh test case untuk melakukan pengujian web <strong>Saucedemo</strong> menggunakan <strong>Python</strong>. 
                 </p>
-                <ol>
-                    <li>Membuka browser Chrome.</li>
-                    <li>Menavigasi ke halaman login (kita gunakan <code>http://quotes.toscrape.com/login</code> sebagai contoh).</li>
-                    <li>Menemukan elemen *username* dan *password* berdasarkan ID-nya.</li>
-                    <li>Mengisi formulir.</li>
-                    <li>Menemukan tombol "Login" dan mengekliknya.</li>
-                    <li>Memverifikasi bahwa login berhasil dengan memeriksa teks di halaman berikutnya.</li>
-                    <li>Menutup browser.</li>
-                </ol>
                 
-                <p>
-                    Pastikan Anda sudah menginstal Selenium (<code>pip install selenium</code>) dan <code>chromedriver</code> yang sesuai ada di PATH Anda atau dikelola oleh <code>webdriver-manager</code>.
-                </p>
+                <div class="bg-slate-900 rounded-lg shadow-xl overflow-hidden border border-slate-800">
+                  <div class="overflow-x-auto relative">
+                    <table class="w-full min-w-[1200px] text-sm text-left text-slate-300">
+                        <thead class="text-xs text-slate-400 uppercase bg-slate-800">
+                            <tr>
+                                <th scope="col" class="px-6 py-4 font-medium tracking-wider">TC ID</th>
+                                <th scope="col" class="px-6 py-4 font-medium tracking-wider">Modul</th>
+                                <th scope="col" class="px-6 py-4 font-medium tracking-wider">Judul Tes</th>
+                                <th scope="col" class="px-6 py-4 font-medium tracking-wider">Prekondisi</th>
+                                <th scope="col" class="px-6 py-4 font-medium tracking-wider">Langkah-langkah</th>
+                                <th scope="col" class="px-6 py-4 font-medium tracking-wider">Hasil yang Diharapkan</th>
+                                <th scope="col" class="px-6 py-4 font-medium tracking-wider">Tipe Tes</th>
+                            </tr>
+                        </thead>
+                        <tbody class="divide-y divide-slate-700">
+                            <tr class="hover:bg-slate-800/60 transition-colors duration-150">
+                                <td class="px-6 py-4 font-medium text-white whitespace-nowrap">TC-LGN-01</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Login</td>
+                                <td class="px-6 py-4 font-medium">Login sukses (standard_user)</td>
+                                <td class="px-6 py-4">Pengguna di halaman Login</td>
+                                <td class="px-6 py-4">
+                                    <ol class="list-decimal list-inside space-y-1">
+                                        <li>Isi username: <code class="bg-slate-700 text-pink-400 p-1 rounded-md text-xs">standard_user</code></li>
+                                        <li>Isi password: <code class="bg-slate-700 text-pink-400 p-1 rounded-md text-xs">secret_sauce</code></li>
+                                        <li>Klik tombol "Login"</li>
+                                    </ol>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc list-inside space-y-1">
+                                        <li>Pengguna berhasil login</li>
+                                        <li>Diarahkan ke <code class="bg-slate-700 text-pink-400 p-1 rounded-md text-xs">/inventory.html</code></li>
+                                        <li>Judul "Products" tampil</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-green-600/20 text-green-300 text-xs font-medium px-3 py-1 rounded-full">Positif</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/60 transition-colors duration-150">
+                                <td class="px-6 py-4 font-medium text-white whitespace-nowrap">TC-LGN-02</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Login</td>
+                                <td class="px-6 py-4 font-medium">Login gagal (pengguna dikunci)</td>
+                                <td class="px-6 py-4">Pengguna di halaman Login</td>
+                                <td class="px-6 py-4">
+                                    <ol class="list-decimal list-inside space-y-1">
+                                        <li>Isi username: <code class="bg-slate-700 text-pink-400 p-1 rounded-md text-xs">locked_out_user</code></li>
+                                        <li>Isi password: <code class="bg-slate-700 text-pink-400 p-1 rounded-md text-xs">secret_sauce</code></li>
+                                        <li>Klik tombol "Login"</li>
+                                    </ol>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc list-inside space-y-1">
+                                        <li>Pengguna gagal login</li>
+                                        <li>Pesan error tampil: "Sorry, this user has been locked out."</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-red-600/20 text-red-300 text-xs font-medium px-3 py-1 rounded-full">Negatif</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/60 transition-colors duration-150">
+                                <td class="px-6 py-4 font-medium text-white whitespace-nowrap">TC-LGN-03</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Login</td>
+                                <td class="px-6 py-4 font-medium">Login gagal (password salah)</td>
+                                <td class="px-6 py-4">Pengguna di halaman Login</td>
+                                <td class="px-6 py-4">
+                                    <ol class="list-decimal list-inside space-y-1">
+                                        <li>Isi username: <code class="bg-slate-700 text-pink-400 p-1 rounded-md text-xs">standard_user</code></li>
+                                        <li>Isi password: <code class="bg-slate-700 text-pink-400 p-1 rounded-md text-xs">password_salah</code></li>
+                                        <li>Klik tombol "Login"</li>
+                                    </ol>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc list-inside space-y-1">
+                                        <li>Pengguna gagal login</li>
+                                        <li>Pesan error tampil: "Username and password do not match..."</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-red-600/20 text-red-300 text-xs font-medium px-3 py-1 rounded-full">Negatif</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/60 transition-colors duration-150">
+                                <td class="px-6 py-4 font-medium text-white whitespace-nowrap">TC-INV-01</td>
+                                <td class="px-6 py-4 whitespace-nowrap">Inventaris</td>
+                                <td class="px-6 py-4 font-medium">Tambah satu barang ke keranjang</td>
+                                <td class="px-6 py-4">Pengguna sudah login</td>
+                                <td class="px-6 py-4">
+                                    <ol class="list-decimal list-inside">
+                                        <li>Klik "Add to cart" pada "Sauce Labs Backpack"</li>
+                                    </ol>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc list-inside space-y-1">
+                                        <li>Tombol berubah jadi "Remove"</li>
+                                        <li>Ikon keranjang menampilkan angka "1"</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-green-600/20 text-green-300 text-xs font-medium px-3 py-1 rounded-full">Positif</span>
+                                </td>
+                            </tr>
+                            <tr class="hover:bg-slate-800/60 transition-colors duration-150">
+                                <td class="px-6 py-4 font-medium text-white whitespace-nowrap">TC-E2E-01</td>
+                                <td class="px-6 py-4 whitespace-nowrap">End-to-End</td>
+                                <td class="px-6 py-4 font-medium">Pembelian barang (Full Flow)</td>
+                                <td class="px-6 py-4">Pengguna sudah login</td>
+                                <td class="px-6 py-4">
+                                    <ol class="list-decimal list-inside space-y-1">
+                                        <li>Tambah barang ke keranjang</li>
+                                        <li>Klik ikon keranjang</li>
+                                        <li>Klik "Checkout"</li>
+                                        <li>Isi form (First Name, Last Name, Zip Code)</li>
+                                        <li>Klik "Continue"</li>
+                                        <li>Klik "Finish"</li>
+                                    </ol>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <ul class="list-disc list-inside space-y-1">
+                                        <li>Diarahkan ke <code class="bg-slate-700 text-pink-400 p-1 rounded-md text-xs">/checkout-complete.html</code></li>
+                                        <li>Tampil pesan "Thank you for your order!"</li>
+                                    </ul>
+                                </td>
+                                <td class="px-6 py-4">
+                                    <span class="bg-green-600/20 text-green-300 text-xs font-medium px-3 py-1 rounded-full">Positif</span>
+                                </td>
+                            </tr>
+                        </tbody>
+                    </table>
+                  </div>
+                </div>
+                
+                
 
-                <!-- Contoh Kode -->
-                <pre class="rounded-lg text-sm"><code class="language-python" style="font-family: 'Fira Code', 'Courier New', monospace;"><span style="color: #6b7280;"># 1. Impor library yang diperlukan</span>
-<span style="color: #a78bfa;">from</span> selenium <span style="color: #a78bfa;">import</span> webdriver
-<span style="color: #a78bfa;">from</span> selenium.webdriver.common.by <span style="color: #a78bfa;">import</span> By
-<span style="color: #a78bfa;">from</span> selenium.webdriver.support.ui <span style="color: #a78bfa;">import</span> WebDriverWait
-<span style="color: #a78bfa;">from</span> selenium.webdriver.support <span style="color: #a78bfa;">import</span> expected_conditions <span style="color: #a78bfa;">as</span> EC
-<span style="color: #a78bfa;">import</span> time
-
-<span style="color: #6b7280;"># 2. Inisialisasi WebDriver</span>
-<span style="color: #6b7280;"># Cara modern (Selenium 4+) tidak perlu setup driver manual</span>
-driver = webdriver.Chrome()
-wait = WebDriverWait(driver, 10) <span style="color: #6b7280;"># Set Explicit Wait (max 10 detik)</span>
-
-<span style="color: #6b7280;"># 3. Buka halaman web</span>
-driver.get(<span style="color: #22d3ee;">"http://quotes.toscrape.com/login"</span>)
-print(<span style="color: #22d3ee;">"Halaman login dibuka..."</span>)
-
-<span style="color: #6b7280;"># 4. Cari elemen, isi form, dan klik login</span>
-<span style="color: #a78bfa;">try</span>:
-    <span style="color: #6b7280;"># Tunggu sampai elemen 'username' bisa diakses</span>
-    username_field = wait.until(EC.presence_of_element_located((By.ID, <span style="color: #22d3ee;">"username"</span>)))
-    password_field = driver.find_element(By.ID, <span style="color: #22d3ee;">"password"</span>)
-    
-    username_field.send_keys(<span style="color: #22d3ee;">"admin"</span>)
-    password_field.send_keys(<span style="color: #22d3ee;">"admin"</span>)
-    print(<span style="color: #22d3ee;">"Formulir diisi..."</span>)
-
-    <span style="color: #6b7280;"># Klik tombol login (menggunakan CSS Selector)</span>
-    login_button = driver.find_element(By.CSS_SELECTOR, <span style="color: #22d3ee;">"input[type='submit']"</span>)
-    login_button.click()
-    print(<span style="color: #22d3ee;">"Tombol login diklik."</span>)
-
-    <span style="color: #6b7280;"># 5. Verifikasi hasil</span>
-    <span style="color: #6b7280;"># Tunggu hingga URL berubah atau elemen logout muncul</span>
-    wait.until(EC.presence_of_element_located((By.LINK_TEXT, <span style="color: #22d3ee;">"Logout"</span>)))
-    
-    <span style="color: #6b7280;"># Ambil teks dari elemen 'Logout' untuk konfirmasi</span>
-    logout_link = driver.find_element(By.LINK_TEXT, <span style="color: #22d3ee;">"Logout"</span>)
-    
-    <span style="color: #a78bfa;">if</span> logout_link.is_displayed():
-        print(<span style="color: #22d3ee;">"Verifikasi BERHASIL: Login sukses."</span>)
-    <span style="color: #a78bfa;">else</span>:
-        print(<span style="color: #22d3ee;">"Verifikasi GAGAL: Login tidak berhasil."</span>)
-
-<span style="color: #a78bfa;">except</span> Exception <span style="color: #a78bfa;">as</span> e:
-    print(f<span style="color: #22d3ee;">"Terjadi error: {e}"</span>)
-
-<span style="color: #a7a;">finally</span>:
-    <span style="color: #6b7280;"># 6. Tutup browser</span>
-    time.sleep(3) <span style="color: #6b7280;"># Beri jeda 3 detik untuk melihat hasil</span>
-    driver.quit()
-    print(<span style="color: #22d3ee;">"Browser ditutup."</span>)
-
-</code></pre>
+                
                 
             </section>
 
@@ -327,7 +395,7 @@ print(<span style="color: #22d3ee;">"Halaman login dibuka..."</span>)
     <!-- Footer -->
     <footer class="bg-slate-900/50 border-t border-slate-800 py-8 lg:hidden">
         <div class="container mx-auto px-6 text-center text-slate-500">
-            <p>&copy; <span id="current-year-footer"></span> Materi Dibuat</p>
+            <p>&copy; <span id="current-year-footer"></span> Ivan Betrandi</p>
         </div>
     </footer>
 
