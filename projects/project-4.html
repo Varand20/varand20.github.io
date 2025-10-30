@@ -1,1 +1,385 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ringkasan Materi | Selenium Web Automation</title>
 
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <!-- Favicon -->
+    <link rel="icon" href="https://placehold.co/32x32/0f172a/22d3ee?text=Se" type="image/png">
+
+    <style>
+        /* Custom styles untuk menyempurnakan Tailwind */
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a; /* slate-900 */
+            color: #cbd5e1; /* slate-300 */
+        }
+        .text-gradient {
+            background-clip: text;
+            -webkit-background-clip: text;
+            color: transparent;
+            background-image: linear-gradient(to right, #22d3ee, #a78bfa);
+        }
+        
+        /* Gaya untuk Prose (konten artikel) */
+        .prose-custom {
+            color: #cbd5e1; /* slate-300 */
+        }
+        .prose-custom h1, .prose-custom h2, .prose-custom h3, .prose-custom h4, .prose-custom h5, .prose-custom h6 {
+            color: #ffffff;
+        }
+        .prose-custom a {
+            color: #22d3ee; /* cyan-400 */
+        }
+        .prose-custom a:hover {
+            color: #67e8f9; /* cyan-300 */
+        }
+        .prose-custom strong {
+            color: #f1f5f9; /* slate-100 */
+        }
+        .prose-custom blockquote {
+            border-left-color: #581c87; /* violet-900 */
+            background-color: #1e293b; /* slate-800 */
+            color: #e2e8f0; /* slate-200 */
+        }
+        .prose-custom code {
+            color: #f472b6; /* pink-400 */
+            background-color: #1e293b; /* slate-800 */
+            padding: 2px 6px;
+            border-radius: 4px;
+            font-weight: 600;
+        }
+        .prose-custom pre {
+            background-color: #020617; /* slate-950 */
+            border: 1px solid #1e293b; /* slate-800 */
+            color: #e2e8f0; /* slate-200 */
+        }
+        .prose-custom ul > li::before {
+            background-color: #a78bfa; /* violet-400 */
+        }
+        .prose-custom table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+        .prose-custom th, .prose-custom td {
+            border: 1px solid #334155; /* slate-700 */
+            padding: 8px 12px;
+        }
+        .prose-custom th {
+            background-color: #1e293b; /* slate-800 */
+            color: #ffffff;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Container Utama -->
+    <div class="flex flex-col lg:flex-row min-h-screen">
+
+        <!-- Sidebar Navigasi (Kiri) -->
+        <aside class="w-full lg:w-72 bg-slate-900/80 backdrop-blur-sm lg:sticky lg:top-0 lg:h-screen p-6 lg:p-8 border-b lg:border-r border-slate-800">
+            <h1 class="text-2xl font-bold text-gradient mb-8">Materi Selenium</h1>
+            
+            <nav>
+                <ul class="space-y-3">
+                    <li>
+                        <a href="#" class="nav-link active font-medium text-lg px-4 py-3 rounded-lg flex items-center space-x-3 transition-all duration-200 bg-slate-800 text-white" data-target="ringkasan">
+                            <i data-feather="file-text" class="w-5 h-5"></i>
+                            <span>Ringkasan Materi</span>
+                        </a>
+                    </li>
+                    <li>
+                        <a href="#" class="nav-link font-medium text-lg px-4 py-3 rounded-lg flex items-center space-x-3 transition-all duration-200 text-slate-400 hover:bg-slate-800 hover:text-white" data-target="praktikum">
+                            <i data-feather="code" class="w-5 h-5"></i>
+                            <span>Contoh Praktikum</span>
+                        </a>
+                    </li>
+                </ul>
+            </nav>
+
+            <div class="absolute bottom-6 left-6 right-6 hidden lg:block">
+                <p class="text-xs text-slate-600">&copy; <span id="current-year-aside"></span> Materi Dibuat</p>
+            </div>
+        </aside>
+
+        <!-- Konten Utama (Kanan) -->
+        <main class="flex-1 p-6 md:p-12 lg:p-16 overflow-y-auto">
+            
+            <!-- Header Konten -->
+            <header class="mb-12">
+                <h1 class="text-4xl md:text-5xl font-bold text-white mb-2">Ringkasan Materi: Selenium</h1>
+            </header>
+
+            <!-- Bagian Konten: Ringkasan Materi (Default) -->
+            <section id="ringkasan" class="content-section prose prose-custom prose-lg max-w-none">
+                
+                <h2>1. Apa Itu Selenium?</h2>
+                <p>
+                    Selenium adalah <strong>framework <i>open-source</i></strong> yang portabel yang digunakan untuk <strong>otomatisasi pengujian aplikasi web</strong>.
+                </p>
+                <p>
+                    Secara sederhana, Selenium bukanlah satu alat saja, melainkan sebuah <strong>rangkaian (suite) perangkat lunak</strong> yang memungkinkan Anda menulis skrip untuk mengontrol tindakan browser secara otomatis. Anda bisa memerintahkan skrip untuk membuka browser, mengeklik tombol, mengisi formulir, dan memverifikasi teks di halaman, seolah-olah dilakukan oleh pengguna sungguhan.
+                </p>
+                <p>
+                    Tujuan utamanya adalah untuk <i>software testing</i> (pengujian perangkat lunak), khususnya <i>automated regression testing</i> (memastikan fitur lama tidak rusak setelah ada perubahan kode baru).
+                </p>
+
+                <h2 class="mt-16">2. Kenapa Menggunakan Selenium? (Keunggulan)</h2>
+                <ul class="space-y-3">
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-1.5 flex-shrink-0"></i>
+                        <span><strong>Gratis dan <i>Open-Source</i>:</strong> Tidak memerlukan biaya lisensi. Siapa pun dapat menggunakannya dan berkontribusi.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-1.5 flex-shrink-0"></i>
+                        <span><strong>Dukungan Multi-Bahasa:</strong> Anda bisa menulis skrip tes menggunakan <strong>Python, Java, C#, JavaScript,</strong> atau Ruby.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-1.5 flex-shrink-0"></i>
+                        <span><strong>Dukungan Multi-Browser:</strong> Skrip dapat dijalankan di berbagai browser seperti Google Chrome, Mozilla Firefox, Safari, dan Microsoft Edge.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-1.5 flex-shrink-0"></i>
+                        <span><strong>Dukungan Multi-Platform:</strong> Skrip Selenium dapat berjalan di Windows, macOS, dan Linux.</span>
+                    </li>
+                    <li class="flex items-start">
+                        <i data-feather="check-circle" class="w-5 h-5 text-cyan-400 mr-3 mt-1.5 flex-shrink-0"></i>
+                        <span><strong>Komunitas Besar & Ekosistem Matang:</strong> Banyak tutorial, forum, dan <i>library</i> pendukung untuk integrasi (seperti TestNG, PyTest, JUnit).</span>
+                    </li>
+                </ul>
+
+                <h2 class="mt-16">3. Komponen Utama Selenium</h2>
+                
+                <h3>A. Selenium WebDriver )</h3>
+                <p>
+                    WebDriver adalah API (Application Programming Interface) yang memungkinkan skrip berkomunikasi langsung dengan browser. Setiap browser memiliki "penerjemah" sendiri yang disebut <strong>Browser Driver</strong> (misalnya <code>chromedriver.exe</code> untuk Chrome, <code>geckodriver.exe</code> untuk Firefox).
+                </p>
+                
+                <h3>B. Selenium IDE</h3>
+                <p>
+                    Ini adalah <i>plugin</i> browser (untuk Chrome dan Firefox) yang bekerja dengan model <i>record-and-playback</i>.
+                </p>
+                
+                <h3>C. Selenium Grid</h3>
+                <p>
+                    Ini digunakan untuk <strong>skalabilitas pengujian</strong>. Selenium Grid memungkinkan menjalankan tes secara <strong>paralel</strong> (bersamaan) di beberapa mesin, browser, dan sistem operasi yang berbeda sekaligus untuk menghemat waktu.
+                </p>
+
+                <h2 class="mt-16">4. Konsep Kunci dalam Praktik</h2>
+                
+                <h3>A. Web Elements & Locators</h3>
+                <p>
+                    <i>Web Elements</i> adalah "benda" di halaman (tombol, link, form). <i>Locators</i> (Selectors) adalah "alamat" atau cara Selenium untuk menemukan elemen tersebut. Ini adalah bagian paling krusial.
+                </p>
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Tipe Locator</th>
+                            <th>Prioritas</th>
+                            <th>Deskripsi</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td><strong>ID</strong></td>
+                            <td>Tinggi</td>
+                            <td>Paling cepat dan paling stabil. Selalu gunakan jika ada dan unik.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Name</strong></td>
+                            <td>Sedang</td>
+                            <td>Sering digunakan untuk elemen formulir (<code>input</code>, <code>textarea</code>).</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Class Name</strong></td>
+                            <td>Sedang</td>
+                            <td>Berguna untuk menemukan elemen dengan gaya (CSS) yang sama.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>CSS Selector</strong></td>
+                            <td>Tinggi</td>
+                            <td>Sangat fleksibel dan cepat, cara modern untuk menemukan elemen.</td>
+                        </tr>
+                        <tr>
+                            <td><strong>XPath</strong></td>
+                            <td>Rendah</td>
+                            <td>Paling kuat (bisa navigasi struktur HTML), tetapi lambat dan rapuh.</td>
+                        </tr>
+                         <tr>
+                            <td><strong>Link Text</strong></td>
+                            <td>Rendah</td>
+                            <td>Hanya untuk menemukan tautan (elemen <code>&lt;a&gt;</code>) berdasarkan teksnya.</td>
+                        </tr>
+                    </tbody>
+                </table>
+                
+                <h3>B. Waits</h3>
+                <p>
+                    Halaman web modern bersifat dinamis. Elemen mungkin belum muncul saat skrip mencarinya. <i>Waits</i> memberi tahu skrip untuk menunggu.
+                </p>
+                <ul>
+                    <li><strong>Implicit Wait:</strong> Perintah global untuk menunggu <i>sekian detik</i> sebelum gagal jika elemen tidak ditemukan.</li>
+                    <li><strong>Explicit Wait (Direkomendasikan):</strong> Perintah spesifik untuk menunggu <i>sampai kondisi tertentu terpenuhi</i> (misalnya, <code>WebDriverWait</code> hingga tombol bisa diklik).</li>
+                </ul>
+
+                <h2 class="mt-16">5. Keterbatasan Selenium</h2>
+                <ul>
+                    <li><strong>Bukan untuk Aplikasi Desktop:</strong> Hanya untuk aplikasi berbasis web di dalam browser.</li>
+                    <li><strong>Bukan untuk Aplikasi Mobile:</strong> Untuk aplikasi <i>native</i> Android/iOS, gunakan <strong>Appium</strong></li>
+                    <li><strong>Tidak Bisa Menangani CAPTCHA:</strong> Selenium tidak dirancang untuk mem-bypass tes keamanan.</li>
+                    <li><strong>Bukan Alat Pelaporan:</strong> Perlu diintegrasikan dengan <i>framework</i> pengujian (PyTest, TestNG) untuk membuat laporan tes yang bagus.</li>
+                </ul>
+            </section>
+            
+            <!-- Bagian Konten: Contoh Praktikum (Hidden) -->
+            <section id="praktikum" class="content-section prose prose-custom prose-lg max-w-none hidden">
+                
+                <h2>Contoh Praktikum: Login Sederhana</h2>
+                <p>
+                    Berikut adalah contoh skrip Selenium dasar menggunakan <strong>Python</strong>. Skenario ini akan melakukan langkah-langkah berikut:
+                </p>
+                <ol>
+                    <li>Membuka browser Chrome.</li>
+                    <li>Menavigasi ke halaman login (kita gunakan <code>http://quotes.toscrape.com/login</code> sebagai contoh).</li>
+                    <li>Menemukan elemen *username* dan *password* berdasarkan ID-nya.</li>
+                    <li>Mengisi formulir.</li>
+                    <li>Menemukan tombol "Login" dan mengekliknya.</li>
+                    <li>Memverifikasi bahwa login berhasil dengan memeriksa teks di halaman berikutnya.</li>
+                    <li>Menutup browser.</li>
+                </ol>
+                
+                <p>
+                    Pastikan Anda sudah menginstal Selenium (<code>pip install selenium</code>) dan <code>chromedriver</code> yang sesuai ada di PATH Anda atau dikelola oleh <code>webdriver-manager</code>.
+                </p>
+
+                <!-- Contoh Kode -->
+                <pre class="rounded-lg text-sm"><code class="language-python" style="font-family: 'Fira Code', 'Courier New', monospace;"><span style="color: #6b7280;"># 1. Impor library yang diperlukan</span>
+<span style="color: #a78bfa;">from</span> selenium <span style="color: #a78bfa;">import</span> webdriver
+<span style="color: #a78bfa;">from</span> selenium.webdriver.common.by <span style="color: #a78bfa;">import</span> By
+<span style="color: #a78bfa;">from</span> selenium.webdriver.support.ui <span style="color: #a78bfa;">import</span> WebDriverWait
+<span style="color: #a78bfa;">from</span> selenium.webdriver.support <span style="color: #a78bfa;">import</span> expected_conditions <span style="color: #a78bfa;">as</span> EC
+<span style="color: #a78bfa;">import</span> time
+
+<span style="color: #6b7280;"># 2. Inisialisasi WebDriver</span>
+<span style="color: #6b7280;"># Cara modern (Selenium 4+) tidak perlu setup driver manual</span>
+driver = webdriver.Chrome()
+wait = WebDriverWait(driver, 10) <span style="color: #6b7280;"># Set Explicit Wait (max 10 detik)</span>
+
+<span style="color: #6b7280;"># 3. Buka halaman web</span>
+driver.get(<span style="color: #22d3ee;">"http://quotes.toscrape.com/login"</span>)
+print(<span style="color: #22d3ee;">"Halaman login dibuka..."</span>)
+
+<span style="color: #6b7280;"># 4. Cari elemen, isi form, dan klik login</span>
+<span style="color: #a78bfa;">try</span>:
+    <span style="color: #6b7280;"># Tunggu sampai elemen 'username' bisa diakses</span>
+    username_field = wait.until(EC.presence_of_element_located((By.ID, <span style="color: #22d3ee;">"username"</span>)))
+    password_field = driver.find_element(By.ID, <span style="color: #22d3ee;">"password"</span>)
+    
+    username_field.send_keys(<span style="color: #22d3ee;">"admin"</span>)
+    password_field.send_keys(<span style="color: #22d3ee;">"admin"</span>)
+    print(<span style="color: #22d3ee;">"Formulir diisi..."</span>)
+
+    <span style="color: #6b7280;"># Klik tombol login (menggunakan CSS Selector)</span>
+    login_button = driver.find_element(By.CSS_SELECTOR, <span style="color: #22d3ee;">"input[type='submit']"</span>)
+    login_button.click()
+    print(<span style="color: #22d3ee;">"Tombol login diklik."</span>)
+
+    <span style="color: #6b7280;"># 5. Verifikasi hasil</span>
+    <span style="color: #6b7280;"># Tunggu hingga URL berubah atau elemen logout muncul</span>
+    wait.until(EC.presence_of_element_located((By.LINK_TEXT, <span style="color: #22d3ee;">"Logout"</span>)))
+    
+    <span style="color: #6b7280;"># Ambil teks dari elemen 'Logout' untuk konfirmasi</span>
+    logout_link = driver.find_element(By.LINK_TEXT, <span style="color: #22d3ee;">"Logout"</span>)
+    
+    <span style="color: #a78bfa;">if</span> logout_link.is_displayed():
+        print(<span style="color: #22d3ee;">"Verifikasi BERHASIL: Login sukses."</span>)
+    <span style="color: #a78bfa;">else</span>:
+        print(<span style="color: #22d3ee;">"Verifikasi GAGAL: Login tidak berhasil."</span>)
+
+<span style="color: #a78bfa;">except</span> Exception <span style="color: #a78bfa;">as</span> e:
+    print(f<span style="color: #22d3ee;">"Terjadi error: {e}"</span>)
+
+<span style="color: #a7a;">finally</span>:
+    <span style="color: #6b7280;"># 6. Tutup browser</span>
+    time.sleep(3) <span style="color: #6b7280;"># Beri jeda 3 detik untuk melihat hasil</span>
+    driver.quit()
+    print(<span style="color: #22d3ee;">"Browser ditutup."</span>)
+
+</code></pre>
+                
+            </section>
+
+        </main>
+    </div>
+
+    <!-- Footer -->
+    <footer class="bg-slate-900/50 border-t border-slate-800 py-8 lg:hidden">
+        <div class="container mx-auto px-6 text-center text-slate-500">
+            <p>&copy; <span id="current-year-footer"></span> Materi Dibuat</p>
+        </div>
+    </footer>
+
+    <script>
+        // Inisialisasi Feather Icons
+        feather.replace();
+
+        // Script untuk tahun di footer
+        const currentYear = new Date().getFullYear();
+        const yearAside = document.getElementById('current-year-aside');
+        const yearFooter = document.getElementById('current-year-footer');
+        
+        if (yearAside) yearAside.textContent = currentYear;
+        if (yearFooter) yearFooter.textContent = currentYear;
+
+
+        // Script Navigasi Konten
+        document.addEventListener('DOMContentLoaded', () => {
+            const navLinks = document.querySelectorAll('.nav-link');
+            const contentSections = document.querySelectorAll('.content-section');
+
+            navLinks.forEach(link => {
+                link.addEventListener('click', (e) => {
+                    e.preventDefault();
+                    
+                    const targetId = link.getAttribute('data-target');
+                    
+                    // Sembunyikan semua section
+                    contentSections.forEach(section => {
+                        section.classList.add('hidden');
+                    });
+
+                    // Tampilkan section yang ditarget
+                    const targetSection = document.getElementById(targetId);
+                    if (targetSection) {
+                        targetSection.classList.remove('hidden');
+                    }
+
+                    // Atur state 'active' pada link navigasi
+                    navLinks.forEach(navLink => {
+                        navLink.classList.remove('active', 'bg-slate-800', 'text-white');
+                        navLink.classList.add('text-slate-400', 'hover:bg-slate-800', 'hover:text-white');
+                    });
+                    
+                    link.classList.add('active', 'bg-slate-800', 'text-white');
+                    link.classList.remove('text-slate-400', 'hover:bg-slate-800', 'hover:text-white');
+
+                    // Scroll ke atas halaman (penting untuk mobile)
+                    window.scrollTo(0, 0);
+                });
+            });
+        });
+    </script>
+</body>
+</html>
