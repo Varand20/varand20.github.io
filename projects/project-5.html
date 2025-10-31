@@ -1,0 +1,1058 @@
+<!DOCTYPE html>
+<html lang="id" class="scroll-smooth">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Template Materi Pembelajaran</title>
+
+    <!-- Tailwind CSS -->
+    <script src="https://cdn.tailwindcss.com"></script>
+
+    <!-- Google Fonts: Poppins -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+
+    <!-- Feather Icons -->
+    <script src="https://unpkg.com/feather-icons"></script>
+
+    <style>
+        body {
+            font-family: 'Poppins', sans-serif;
+            background-color: #0f172a; /* slate-900 */
+            color: #cbd5e1; /* slate-300 */
+        }
+        /* Class helper untuk link aktif di sidebar */
+        .active-link {
+            background-color: #0c4a6e; /* sky-800 */
+            color: white;
+            font-weight: 600;
+        }
+        /* Style scrollbar kustom (opsional, tapi bagus) */
+        ::-webkit-scrollbar {
+            width: 8px;
+            height: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #1e293b; /* slate-800 */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #475569; /* slate-600 */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #64748b; /* slate-500 */
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Tombol Toggle (Hamburger) - Hanya terlihat di mobile -->
+    <!-- Posisi fixed di kiri atas, di atas segalanya (z-40) -->
+    <button id="menu-toggle" class="lg:hidden fixed top-4 left-4 z-40 p-2 bg-slate-700 text-white rounded-md shadow-lg">
+        <i data-feather="menu" class="w-6 h-6"></i>
+    </button>
+
+    <!-- Overlay Latar Belakang - Hanya untuk mobile saat sidebar terbuka -->
+    <div id="menu-overlay" class="lg:hidden fixed inset-0 bg-black/60 z-20 hidden"></div>
+
+    <!-- Layout Utama: Sidebar di kiri, Konten di kanan -->
+    <!-- Mengubah 'flex-col' menjadi 'flex-row' agar konsisten -->
+    <div class="flex flex-row min-h-screen">
+
+        <!-- === SIDEBAR NAVIGASI === -->
+        <!-- 
+          Modifikasi Class:
+          - Hapus 'w-full'
+          - Tambah 'id="sidebar"' untuk target JS
+          - Tambah 'fixed' agar selalu di atas
+          - Tambah 'w-72' (lebar tetap)
+          - Tambah 'h-full' (tinggi penuh)
+          - Tambah 'z-30' (di atas konten, di bawah tombol)
+          - Tambah 'transform -translate-x-full' (tersembunyi ke kiri by default)
+          - Tambah 'lg:translate-x-0' (terlihat normal di layar besar)
+          - Tambah 'transition-transform duration-300 ease-in-out' (untuk animasi)
+          - Hapus 'lg:fixed' (karena sudah 'fixed')
+        -->
+        <nav id="sidebar" class="w-72 bg-slate-800 h-full lg:overflow-y-auto shadow-lg z-30 fixed transform -translate-x-full lg:translate-x-0 transition-transform duration-300 ease-in-out">
+            <!-- 
+              Menambahkan wrapper untuk header sidebar
+              agar tombol close bisa sejajar dengan judul
+            -->
+            <div class="flex justify-between items-center p-6 border-b border-slate-700">
+                <!-- Judul Sidebar -->
+                <h2 class="text-2xl font-bold text-white">
+                    Daftar Materi
+                </h2>
+                <!-- Tombol Close (X) - Hanya terlihat di mobile -->
+                <button id="menu-close" class="lg:hidden text-slate-400 hover:text-white">
+                    <i data-feather="x" class="w-6 h-6"></i>
+                </button>
+            </div>
+            
+            <!-- Wrapper untuk Navigasi (memberi padding) -->
+            <div class="p-6">
+                <ul class="space-y-2" id="sidebar-nav">
+                    <!-- Item Navigasi 1 -->
+                    <li>
+                        <a href="#" class="sidebar-link block rounded-md py-2.5 px-4 transition duration-200 hover:bg-slate-700 hover:text-white active-link" data-target="materi-1">
+                            Strategi Testing
+                        </a>
+                    </li>
+                    <!-- Item Navigasi 2 -->
+                    <li>
+                        <a href="#" class="sidebar-link block rounded-md py-2.5 px-4 transition duration-200 hover:bg-slate-700 hover:text-white" data-target="materi-2">
+                            UI/UX Testing
+                        </a>
+                    </li>
+                    <!-- Item Navigasi 3 -->
+                    <li>
+                        <a href="#" class="sidebar-link block rounded-md py-2.5 px-4 transition duration-200 hover:bg-slate-700 hover:text-white" data-target="materi-3">
+                            Testing Plan
+                        </a>
+                    </li>
+                    <!-- Item Navigasi 4 -->
+                    <li>
+                        <a href="#" class="sidebar-link block rounded-md py-2.5 px-4 transition duration-200 hover:bg-slate-700 hover:text-white" data-target="materi-4">
+                            Test Scenario, Test Case, & Bug Report
+                        </a>
+                    </li>
+                    <!-- Item Navigasi 5 -->
+                    <li>
+                        <a href="#" class="sidebar-link block rounded-md py-2.5 px-4 transition duration-200 hover:bg-slate-700 hover:text-white" data-target="materi-5">
+                            Unit Testing
+                        </a>
+                    </li>
+                    <!-- Item Navigasi 6 -->
+                    <li>
+                        <a href="#" class="sidebar-link block rounded-md py-2.5 px-4 transition duration-200 hover:bg-slate-700 hover:text-white" data-target="materi-6">
+                            API Testing
+                        </a>
+                    </li>
+                    <!-- Item Navigasi 7 -->
+                    <li>
+                        <a href="#" class="sidebar-link block rounded-md py-2.5 px-4 transition duration-200 hover:bg-slate-700 hover:text-white" data-target="materi-7">
+                            Pengantar Cypress
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+
+        <!-- === KONTEN UTAMA === -->
+        <!-- 'lg:ml-72' sudah benar, memberi ruang untuk sidebar di desktop -->
+        <main class="flex-1 lg:ml-72 p-6 lg:p-10">
+            <!-- Wrapper untuk semua bagian konten -->
+            <div id="content-wrapper">
+
+                <!-- Konten Materi 1 (Terlihat by default) -->
+                <!-- Saya tambahkan materi 1 yg sepertinya terhapus di kodemu -->
+                <section id="materi-1" class="content-section text-slate-300">
+                    <h1 class="text-4xl font-bold text-white mb-6 pb-2 border-b border-slate-700">Ringkasan Strategi Testing</h1>
+                    
+                    <!-- Definisi dan Tujuan -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-3">Apa Itu Testing dan Tujuannya?</h2>
+                        <p class="text-lg mb-4"><strong>Testing (Pengujian)</strong> adalah proses mengevaluasi produk perangkat lunak untuk menemukan cacat (bug) dan memastikan produk bekerja sesuai kebutuhan, baik fungsional maupun non-fungsional.</p>
+                        
+                        <h3 class="text-xl font-semibold text-sky-400 mb-2">Tujuan Utama Testing:</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Menemukan kesalahan dan memastikan kualitas produk sebelum rilis.</li>
+                            <li>Melakukan Verifikasi dan Validasi.</li>
+                            <li>Mengurangi risiko kegagalan sistem.</li>
+                            <li>Menjamin keamanan dan efisiensi biaya.</li>
+                            <li>Meningkatkan kepercayaan stakeholder dan pengalaman pengguna.</li>
+                        </ul>
+                    </div>
+
+                    <!-- STLC -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-4">Software Testing Life Cycle (STLC)</h2>
+                        <p class="mb-4">STLC adalah pendekatan sistematis untuk menguji perangkat lunak. Berikut adalah tahapannya:</p>
+                        <ol class="list-decimal list-inside space-y-3">
+                            <li><strong>Test Planning (Perencanaan):</strong> Membuat strategi, mengidentifikasi lingkungan, dan memperkirakan waktu/biaya.</li>
+                            <li><strong>Test Design (Perancangan):</strong> Menulis kasus uji (test case), membuat data pengujian, dan menentukan hasil yang diharapkan.</li>
+                            <li><strong>Test Execution (Eksekusi):</strong> Menjalankan pengujian pada berbagai level (Component, Integration, System, Acceptance).</li>
+                            <li><strong>Pelaporan & Analisis:</strong> Meringkas hasil, mencatat bug, dan memberi rekomendasi perbaikan.</li>
+                        </ol>
+                    </div>
+
+                    <!-- Klasifikasi Testing -->
+                    <h2 class="text-3xl font-bold text-white mb-4 mt-8">Klasifikasi Software Testing</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        
+                        <!-- Card 1: Berdasarkan Abstraksi -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-sky-400 mb-3">
+                                <i data-feather="layers" class="w-5 h-5 mr-2"></i>
+                                Berdasarkan Abstraksi (Level)
+                            </h3>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li><strong>Unit Testing:</strong> Menguji komponen terkecil.</li>
+                                <li><strong>Integration Testing:</strong> Menguji interaksi antar unit.</li>
+                                <li><strong>System Testing:</strong> Menguji sistem secara keseluruhan.</li>
+                                <li><strong>Acceptance Testing:</strong> Menguji dari perspektif klien.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card 2: Berdasarkan Fungsi -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-sky-400 mb-3">
+                                <i data-feather="check-circle" class="w-5 h-5 mr-2"></i>
+                                Berdasarkan Fungsi
+                            </h3>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li><strong>Functional Testing:</strong> Menguji apakah fungsi berjalan (Misal: Tombol login).</li>
+                                <li><strong>Non-Functional Testing:</strong> Menguji <em>bagaimana</em> sistem bekerja (Misal: Kecepatan).</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card 3: Berdasarkan Domain -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-sky-400 mb-3">
+                                <i data-feather="globe" class="w-5 h-5 mr-2"></i>
+                                Berdasarkan Domain
+                            </h3>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li><strong>Performance Testing:</strong> Menguji kecepatan & stabilitas.</li>
+                                <li><strong>Security Testing:</strong> Mengidentifikasi celah keamanan.</li>
+                                <li><strong>Usability Testing:</strong> Mengevaluasi kemudahan penggunaan.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card 4: Berdasarkan Struktur -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-sky-400 mb-3">
+                                <i data-feather="code" class="w-5 h-5 mr-2"></i>
+                                Berdasarkan Struktur (Metode)
+                            </h3>
+                            <ul class="list-disc list-inside space-y-1 text-sm">
+                                <li><strong>Black-Box Testing:</strong> Tester tidak tahu kode (fokus di input/output).</li>
+                                <li><strong>White-Box Testing:</strong> Tester tahu kode (fokus di alur logika).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Kesimpulan -->
+                    <div class="border-l-4 border-sky-500 bg-slate-800 p-6 rounded-r-lg shadow-lg">
+                        <h2 class="text-2xl font-bold text-white mb-3">Kesimpulan</h2>
+                        <p class="text-lg italic">Testing adalah tahapan krusial dalam <strong>Software Development Life Cycle (SDLC)</strong> untuk menghasilkan perangkat lunak yang berkualitas, bebas bug, dan disukai pengguna.</p>
+                    </div>
+
+                </section>
+
+                <!-- Konten Materi 2 (Tersembunyi) -->
+                <!-- Konten Materi 2 (Ringkasan UI/UX Testing - IMPROVED) -->
+                <section id="materi-2" class="content-section text-slate-300 hidden">
+                    <h1 class="text-4xl font-bold text-white mb-6 pb-2 border-b border-slate-700">Ringkasan Materi UI/UX Testing</h1>
+                    
+                    <!-- 1. Perbedaan Mendasar UI vs. UX -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-4">1. Perbedaan Mendasar UI vs. UX Testing</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Kolom UI -->
+                            <div class="border-l-4 border-sky-500 pl-4">
+                                <h3 class="flex items-center text-xl font-bold text-sky-400 mb-2">
+                                    <i data-feather="monitor" class="w-5 h-5 mr-2"></i>
+                                    UI (User Interface) Testing
+                                </h3>
+                                <p>Berfokus pada <strong>tampilan visual</strong> dan elemen antarmuka. Tujuannya memastikan warna, ikon, ukuran tombol, dan tata letak (layout) ditampilkan dengan benar, konsisten, dan responsif.</p>
+                            </div>
+                            <!-- Kolom UX -->
+                            <div class="border-l-4 border-teal-500 pl-4">
+                                <h3 class="flex items-center text-xl font-bold text-teal-400 mb-2">
+                                    <i data-feather="users" class="w-5 h-5 mr-2"></i>
+                                    UX (User Experience) Testing
+                                </h3>
+                                <p>Berfokus pada <strong>keseluruhan pengalaman pengguna</strong>. Tujuannya menguji apakah pengguna dapat mencapai tujuan mereka (misal: menyelesaikan pembelian) dengan mudah, efisien, dan tanpa kebingungan.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Fokus Utama Pengujian -->
+                    <h2 class="text-3xl font-bold text-white mb-4 mt-8">2. Fokus Utama Pengujian</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        
+                        <!-- Card: Fokus UI Testing -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6 flex flex-col">
+                            <h3 class="flex items-center text-xl font-bold text-sky-400 mb-3">
+                                <i data-feather="layout" class="w-5 h-5 mr-2"></i>
+                                Fokus Utama UI Testing
+                            </h3>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Konsistensi Visual:</strong> Memastikan gaya seragam (warna, ikon, font) di semua halaman.</li>
+                                <li><strong>Responsivitas:</strong> Memeriksa tampilan dan fungsionalitas di berbagai ukuran layar (desktop, tablet, mobile).</li>
+                                <li><strong>Kompatibilitas:</strong> Memastikan UI bekerja baik di berbagai browser (Chrome, Firefox, Safari) dan sistem operasi (Windows, macOS, Android, iOS).</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card: Fokus UX Testing -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6 flex flex-col">
+                            <h3 class="flex items-center text-xl font-bold text-teal-400 mb-3">
+                                <i data-feather="compass" class="w-5 h-5 mr-2"></i>
+                                Fokus Utama UX Testing
+                            </h3>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Kegunaan (Usability):</strong> Seberapa mudah dan efektif pengguna berinteraksi untuk menyelesaikan tugas.</li>
+                                <li><strong>Aksesibilitas (Accessibility):</strong> Memastikan software dapat digunakan oleh semua orang, termasuk penyandang disabilitas (misal: pengujian *screen reader* & kontras warna).</li>
+                                <li><strong>Alur Pengguna (User Flow):</strong> Menganalisis kelancaran pengguna berpindah dari satu langkah ke langkah berikutnya (misal: dari *homepage* ke *checkout*).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3. Metode Pengujian Umum (IMPROVED) -->
+                    <h2 class="text-3xl font-bold text-white mb-4 mt-8">3. Metode Pengujian Umum</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                        <!-- Card: A/B Testing (Corrected) -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-amber-400 mb-3">
+                                <i data-feather="git-pull-request" class="w-5 h-5 mr-2"></i>
+                                A/B Testing
+                            </h3>
+                            <p class="mb-2">Metode perbandingan dua versi (A dan B) dari sebuah halaman untuk melihat mana yang lebih efektif dalam mencapai tujuan (misal: lebih banyak klik tombol).</p>
+                            <p class="text-sm text-slate-400"><strong>Contoh Tools:</strong> Google Optimize, VWO, Optimizely.</p>
+                        </div>
+
+                        <!-- Card: Heatmaps (Corrected) -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-amber-400 mb-3">
+                                <i data-feather="thermometer" class="w-5 h-5 mr-2"></i>
+                                Heatmaps
+                            </h3>
+                            <p class="mb-2">Visualisasi data yang menunjukkan di mana pengguna paling sering mengklik, menggerakkan mouse (*move map*), atau men-scroll halaman (*scroll map*).</p>
+                            <p class="text-sm text-slate-400"><strong>Contoh Tools:</strong> Hotjar, Crazy Egg, Microsoft Clarity.</p>
+                        </div>
+                        
+                        <!-- Card: Usability Testing (Added) -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-amber-400 mb-3">
+                                <i data-feather="user-check" class="w-5 h-5 mr-2"></i>
+                                Usability Testing
+                            </h3>
+                            <p class="mb-2">Mengamati pengguna nyata saat mereka mencoba menyelesaikan tugas. Tujuannya adalah menemukan masalah alur, kebingungan, dan hambatan secara langsung.</p>
+                            <p class="text-sm text-slate-400"><strong>Contoh Tools:</strong> Maze, UserTesting.com, Lookback.</p>
+                        </div>
+                    </div>
+
+                    <!-- 4. Evaluasi Heuristik -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-4">4. Evaluasi Heuristik (10 Prinsip Desain Nielsen)</h2>
+                        <ol class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-4 list-decimal list-outside pl-5">
+                            <li><strong>Visibilitas Status Sistem:</strong> Sistem harus memberi tahu pengguna apa yang sedang terjadi (umpan balik).</li>
+                            <li><strong>Kecocokan Sistem & Dunia Nyata:</strong> Gunakan bahasa dan konsep yang familiar bagi pengguna.</li>
+                            <li><strong>Kontrol dan Kebebasan Pengguna:</strong> Sediakan "pintu darurat" untuk membatalkan aksi.</li>
+                            <li><strong>Konsistensi dan Standar:</strong> Elemen desain dan terminologi harus konsisten.</li>
+                            <li><strong>Pencegahan Kesalahan:</strong> Desain yang baik harus mencegah pengguna melakukan kesalahan.</li>
+                            <li><strong>Mengenali Daripada Mengingat:</strong> Minimalkan beban ingatan pengguna (buat objek/pilihan terlihat).</li>
+                            <li><strong>Fleksibilitas dan Efisiensi:</strong> Sediakan *shortcuts* untuk pengguna ahli.</li>
+                            <li><strong>Desain Estetis dan Minimalis:</strong> Antarmuka tidak boleh berisi info yang tidak relevan.</li>
+                            <li><strong>Membantu Pemulihan Kesalahan:</strong> Pesan eror harus mudah dimengerti dan menyarankan solusi.</li>
+                            <li><strong>Bantuan dan Dokumentasi:</strong> Bantuan harus mudah dicari dan fokus pada tugas pengguna.</li>
+                        </ol>
+                    </div>
+                </section>
+
+                <!-- Konten Materi 3 (Tersembunyi) -->
+                <!-- Konten Materi 3 (Ringkasan Testing Plan - IMPROVED) -->
+                <section id="materi-3" class="content-section text-slate-300 hidden">
+                    <h1 class="text-4xl font-bold text-white mb-6 pb-2 border-b border-slate-700">Ringkasan Materi: Testing Plan</h1>
+                    
+                    <!-- 1. Apa itu Testing Plan? -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-4">1. Apa itu Testing Plan?</h2>
+                        <p class="text-lg mb-4"><strong>Testing Plan (Rencana Pengujian)</strong> adalah dokumen panduan strategis yang menjelaskan bagaimana proses pengujian perangkat lunak akan dilakukan. Dokumen ini berfungsi sebagai acuan resmi bagi tim penguji agar prosesnya terarah dan konsisten.</p>
+                        
+                        <h3 class="text-xl font-semibold text-sky-400 mb-2">Tujuan Utama:</h3>
+                        <ul class="list-disc list-inside space-y-2">
+                            <li>Memberi gambaran jelas tentang <strong>apa</strong> yang akan diuji dan <strong>bagaimana</strong> cara mengujinya.</li>
+                            <li>Memastikan proses pengujian menemukan sebanyak mungkin kesalahan (bugs).</li>
+                            <li>Menjamin perangkat lunak mencapai kualitas yang diharapkan pengguna.</li>
+                            <li>Mengoptimalkan penggunaan waktu, biaya, dan sumber daya.</li>
+                            <li>Menyediakan dokumentasi untuk evaluasi proyek di masa depan.</li>
+                        </ul>
+                    </div>
+
+                    <h2 class="text-3xl font-bold text-white mb-4 mt-8">2. Komponen Kunci Testing Plan</h2>
+                    <p class="mb-6">Dokumen Test Plan memiliki banyak komponen (seperti standar IEEE 829). Berikut adalah pengelompokan komponen-komponen terpenting dari materi tersebut:</p>
+
+                    <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                        
+                        <!-- Card 1: Ruang Lingkup (Scope) -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-sky-400 mb-3">
+                                <i data-feather="crosshair" class="w-5 h-5 mr-2"></i>
+                                Komponen: Ruang Lingkup (Scope)
+                            </h3>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Test Items:</strong> Komponen atau modul teknis yang akan diuji.</li>
+                                <li><strong>Features to be Tested:</strong> Fitur yang akan diuji dari sudut pandang pengguna.</li>
+                                <li><strong>Features not to be Tested:</strong> Fitur yang sengaja dikecualikan dari pengujian, beserta alasannya (misal: sudah stabil, tidak dirilis).</li>
+                                <li><strong>Software Risk Issues:</strong> Identifikasi potensi risiko (misal: fitur kompleks, integrasi baru, kebutuhan yang samar).</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card 2: Strategi (Approach) -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-sky-400 mb-3">
+                                <i data-feather="compass" class="w-5 h-5 mr-2"></i>
+                                Komponen: Pendekatan (Approach)
+                            </h3>
+                            <p class->Menentukan strategi umum pengujian, mencakup:</p>
+                            <ul class="list-disc list-inside space-y-2 mt-2">
+                                <li><strong>Tipe Pengujian:</strong> (Unit, Integration, System, Acceptance).</li>
+                                <li><strong>Teknik Pengujian:</strong> (Black-box, White-box).</li>
+                                <li><strong>Metode Pengujian:</strong> (Manual atau Otomatis).</li>
+                                <li><strong>Tujuan Pengujian:</strong> (Validasi fungsionalitas, kinerja, keamanan).</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card 3: Kriteria & Aturan -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-sky-400 mb-3">
+                                <i data-feather="check-square" class="w-5 h-5 mr-2"></i>
+                                Komponen: Kriteria & Aturan
+                            </h3>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Item Pass/Fail Criteria:</strong> Standar yang jelas dan objektif untuk menentukan apakah sebuah fitur lulus atau gagal uji.</li>
+                                <li><strong>Suspension Criteria:</strong> Kondisi kapan pengujian harus dihentikan sementara (misal: ditemukan bug kritis yang memblokir).</li>
+                                <li><strong>Resumption Requirements:</strong> Kondisi yang harus dipenuhi agar pengujian dapat dilanjutkan kembali.</li>
+                            </ul>
+                        </div>
+
+                        <!-- Card 4: Logistik, Tim, & Jadwal -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-sky-400 mb-3">
+                                <i data-feather="calendar" class="w-5 h-5 mr-2"></i>
+                                Komponen: Logistik, Tim, & Jadwal
+                            </h3>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Environmental Needs:</strong> Kebutuhan lingkungan pengujian (Hardware, Software/Versi, Data Uji, Alat, Jaringan).</li>
+                                <li><strong>Responsibilities:</strong> Pembagian tanggung jawab (Siapa menguji apa, siapa memverifikasi bug).</li>
+                                <li><strong>Staffing & Training Needs:</strong> Penentuan peran (Test Manager, Tester) dan kebutuhan pelatihan tim.</li>
+                                <li><strong>Schedule:</strong> Garis waktu (*timeline*) pengujian, termasuk *milestone* penting dan jadwal *retest*.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3. Dokumentasi & Hasil Akhir -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-4">3. Dokumentasi & Hasil Akhir</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div>
+                                <h3 class="font-semibold text-lg text-white">Test Deliverables (Hasil)</h3>
+                                <p>Dokumen, artefak, dan hasil nyata yang diserahkan, seperti: Laporan Bug, Hasil Eksekusi Test Case, dan Laporan Ringkasan Pengujian (*Test Summary Report*).</p>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-lg text-white">Approvals (Persetujuan)</h3>
+                                <p>Bagian akhir yang berisi tanda tangan dari *stakeholder* (seperti Manajer Proyek) yang menyetujui ruang lingkup, jadwal, dan sumber daya dalam rencana ini.</p>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Konten Materi 4 (Tersembunyi) -->
+                <!-- Konten Materi 4 (Test Scenario, Test Case, Bug Report - IMPROVED) -->
+                <section id="materi-4" class="content-section text-slate-300 hidden">
+                    <h1 class="text-4xl font-bold text-white mb-6 pb-2 border-b border-slate-700">Test Scenario, Test Case, & Bug Report</h1>
+                    
+                    <!-- 1. Alur Kerja Dokumen Pengujian -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-8">
+                        <h2 class="text-2xl font-bold text-white mb-5 text-center">1. Alur Kerja Dokumen Pengujian</h2>
+                        <div class="flex flex-col md:flex-row items-stretch justify-between space-y-4 md:space-y-0 md:space-x-4">
+                            
+                            <!-- Step 1: Test Scenario -->
+                            <div class="flex-1 text-center p-5 bg-slate-700 rounded-lg flex flex-col items-center justify-center">
+                                <i data-feather="map" class="w-10 h-10 mx-auto text-sky-400 mb-2"></i>
+                                <h3 class="text-xl font-bold text-white">Test Scenario</h3>
+                                <p class="text-sm">"Apa yang akan diuji?"<br>(Gambaran Umum)</p>
+                            </div>
+                            
+                            <!-- Arrow -->
+                            <div class="flex items-center justify-center">
+                                <i data-feather="chevron-right" class="w-12 h-12 text-slate-500 hidden md:block"></i>
+                                <i data-feather="chevron-down" class="w-12 h-12 text-slate-500 md:hidden"></i>
+                            </div>
+
+                            <!-- Step 2: Test Case -->
+                            <div class="flex-1 text-center p-5 bg-slate-700 rounded-lg flex flex-col items-center justify-center">
+                                <i data-feather="list" class="w-10 h-10 mx-auto text-sky-400 mb-2"></i>
+                                <h3 class="text-xl font-bold text-white">Test Case</h3>
+                                <p class="text-sm">"Bagaimana cara mengujinya?"<br>(Langkah-langkah Detail)</p>
+                            </div>
+
+                            <!-- Arrow -->
+                            <div class="flex items-center justify-center">
+                                <i data-feather="chevron-right" class="w-12 h-12 text-slate-500 hidden md:block"></i>
+                                <i data-feather="chevron-down" class="w-12 h-12 text-slate-500 md:hidden"></i>
+                            </div>
+
+                            <!-- Step 3: Bug Report -->
+                            <div class="flex-1 text-center p-5 bg-slate-700 rounded-lg flex flex-col items-center justify-center">
+                                <i data-feather="alert-triangle" class="w-10 h-10 mx-auto text-red-400 mb-2"></i>
+                                <h3 class="text-xl font-bold text-white">Bug Report</h3>
+                                <p class="text-sm">"Apa hasil temuannya?"<br>(Jika Hasil = Gagal)</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Anatomi Dokumen -->
+                    <h2 class="text-3xl font-bold text-white mb-4 mt-8">2. Anatomi Dokumen</h2>
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-6">
+                        
+                        <!-- Kolom Kiri: Test Scenario & Case -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6 space-y-4">
+                            <h3 class="flex items-center text-xl font-bold text-sky-400 mb-3">
+                                <i data-feather="file-text" class="w-5 h-5 mr-2"></i>
+                                Anatomi Test Scenario & Test Case
+                            </h3>
+                            
+                            <h4 class="font-semibold text-white">Test Scenario (Level Tinggi)</h4>
+                            <ul class="list-disc list-inside text-sm">
+                                <li><strong>ID Scenario:</strong> Kode unik (misal: TS001).</li>
+                                <li><strong>Modul/Fitur:</strong> Fitur yang diuji (misal: "Kalkulator BMI").</li>
+                                <li><strong>Deskripsi:</strong> Penjelasan singkat *apa* yang diuji (misal: "Verifikasi perhitungan dan klasifikasi BMI").</li>
+                            </ul>
+
+                            <h4 class="font-semibold text-white pt-4 border-t border-slate-700">Test Case (Level Detail)</h4>
+                            <ul class="list-disc list-inside text-sm space-y-1">
+                                <li><strong>ID Test Case:</strong> Kode unik (misal: TC001).</li>
+                                <li><strong>Precondition:</strong> Kondisi awal (misal: "Aplikasi terbuka di halaman utama").</li>
+                                <li><strong>Test Steps:</strong> Langkah-langkah detail (1. Masukkan tinggi 170cm, 2. Masukkan berat 60kg, 3. ...).</li>
+                                <li><strong>Test Data:</strong> Input yang digunakan (Tinggi = 170, Berat = 60).</li>
+                                <li><strong>Expected Result:</strong> Hasil yang diharapkan (misal: "Hasil BMI = 20.8 dan kategori 'Normal'").</li>
+                                <li><strong>Actual Result:</strong> Hasil yang sebenarnya terjadi (diisi oleh tester).</li>
+                                <li><strong>Status:</strong> Lulus / Gagal (Pass / Fail).</li>
+                            </ul>
+                        </div>
+
+                        <!-- Kolom Kanan: Bug Report -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-red-400 mb-3">
+                                <i data-feather="alert-triangle" class="w-5 h-5 mr-2"></i>
+                                Anatomi Bug Report
+                            </h3>
+                            <ul class="list-disc list-inside space-y-1.5">
+                                <li><strong>Bug ID:</strong> Kode unik bug (misal: BMI-001).</li>
+                                <li><strong>Bug Title:</strong> Judul jelas & ringkas (misal: "Perhitungan BMI salah saat input 170cm & 60kg").</li>
+                                <li class="text-white font-semibold"><strong>Step to Reproduce:</strong> Langkah pasti untuk memicu bug (Paling Penting!).</li>
+                                <li><strong>Actual Result:</strong> Perilaku salah yang terjadi (misal: "Hasil BMI = 12.5").</li>
+                                <li><strong>Expected Result:</strong> Perilaku yang seharusnya terjadi (misal: "Hasil BMI seharusnya = 20.8").</li>
+                                <li><strong>Severity:</strong> Seberapa besar *dampak* bug ini? (Lihat di bawah).</li>
+                                <li><strong>Priority:</strong> Seberapa *cepat* harus diperbaiki? (Lihat di bawah).</li>
+                                <li><strong>Environment:</strong> Di mana bug terjadi (misal: Android 13, v1.0.0).</li>
+                                <li><strong>Lampiran:</strong> Screenshot atau video rekaman.</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3. Kunci Laporan Bug: Severity vs Priority -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-4">3. Kunci Laporan Bug: Severity vs. Priority</h2>
+                        <p class="text-sm mb-4">Bug yang dampaknya besar (Severity) belum tentu urgensinya tinggi (Priority), dan sebaliknya. Ini adalah dua hal yang berbeda.</p>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Kolom Severity -->
+                            <div class="border-l-4 border-red-500 pl-4">
+                                <h3 class="flex items-center text-xl font-bold text-red-400 mb-2">
+                                    <i data-feather="frown" class="w-5 h-5 mr-2"></i>
+                                    Severity (Tingkat Keparahan)
+                                </h3>
+                                <p class="text-sm mb-2">Seberapa besar <strong>dampak</strong> bug terhadap fungsionalitas? (Ditentukan oleh Tester/QA)</p>
+                                <ul class="list-disc list-inside text-sm space-y-1">
+                                    <li><strong>Critical:</strong> Aplikasi *crash*, data rusak, fungsionalitas utama GAGAL total.</li>
+                                    <li><strong>Major (High):</strong> Fungsionalitas utama tidak berfungsi semestinya.</li>
+                                    <li><strong>Minor (Medium):</strong> Fungsionalitas non-utama bermasalah atau bug kosmetik yang mengganggu.</li>
+                                    <li><strong>Low:</strong> Bug kosmetik kecil (salah ketik, warna sedikit beda).</li>
+                                </ul>
+                            </div>
+                            <!-- Kolom Priority -->
+                            <div class="border-l-4 border-yellow-500 pl-4">
+                                <h3 class="flex items-center text-xl font-bold text-yellow-400 mb-2">
+                                    <i data-feather="clock" class="w-5 h-5 mr-2"></i>
+                                    Priority (Tingkat Urgensi)
+                                </h3>
+                                <p class="text-sm mb-2">Seberapa <strong>cepat</strong> bug ini harus diperbaiki? (Ditentukan oleh Manajer Proyek)</p>
+                                <ul class="list-disc list-inside text-sm space-y-1">
+                                    <li><strong>P1 - Urgent:</strong> Harus diperbaiki SEKARANG. Menghalangi rilis.</li>
+                                    <li><strong>P2 - High:</strong> Harus diperbaiki secepatnya, masuk dalam *sprint* ini.</li>
+                                    <li><strong>P3 - Medium:</strong> Bisa diperbaiki di siklus rilis berikutnya.</li>
+                                    <li><strong>P4 - Low:</strong> Akan diperbaiki jika ada waktu luang.</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 4. Pencegahan Bug -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-4">4. Cara Menghindari Bug (Pencegahan)</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="check-circle" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+                                <span>Pahami Persyaratan (Requirement) dengan jelas.</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="check-circle" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+                                <span>Terapkan Code Review antar pengembang.</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="check-circle" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+                                <span>Lakukan Unit Testing di awal pengembangan.</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="check-circle" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+                                <span>Manfaatkan Pengujian Otomatis (Automation).</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="check-circle" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+                                <span>Buat Rencana Pengujian (Test Plan) yang komprehensif.</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="check-circle" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+                                <span>Jaga Kolaborasi Tim (Developer, QA, Produk).</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Konten Materi 5 (Tersembunyi) -->
+                <!-- Konten Materi 5 (Unit Testing - IMPROVED) -->
+                <section id="materi-5" class="content-section text-slate-300 hidden">
+                    <h1 class="text-4xl font-bold text-white mb-6 pb-2 border-b border-slate-700">Pengantar Unit Testing</h1>
+                    
+                    <!-- 1. Apa itu Unit Testing? -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-8">
+                        <h2 class="text-2xl font-bold text-white mb-4">1. Apa itu Unit Testing?</h2>
+                        <p class="text-lg mb-6"><strong>Unit Testing</strong> adalah pengujian yang berfokus pada <strong>unit terkecil</strong> dari kode yang bisa diisolasi, seperti sebuah *function*, *method*, atau *class*. Tujuannya adalah untuk memverifikasi bahwa setiap unit kode bekerja persis seperti yang diharapkan.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <!-- Konsep: Piramida Pengujian -->
+                            <div class="border-l-4 border-sky-500 pl-4">
+                                <h3 class="flex items-center text-xl font-bold text-sky-400 mb-2">
+                                    <i data-feather="layers" class="w-5 h-5 mr-2"></i>
+                                    Dasar Piramida Pengujian
+                                </h3>
+                                <p>Unit test adalah level paling dasar, paling banyak jumlahnya, dan yang paling cepat serta murah untuk dijalankan. Mereka membentuk fondasi yang kokoh untuk *Integration Test* dan *End-to-End (E2E) Test*.</p>
+                            </div>
+                            <!-- Konsep: Analogi Suku Cadang -->
+                            <div class="border-l-4 border-teal-500 pl-4">
+                                <h3 class="flex items-center text-xl font-bold text-teal-400 mb-2">
+                                    <i data-feather="settings" class="w-5 h-5 mr-2"></i>
+                                    Analogi: Suku Cadang Mobil
+                                </h3>
+                                <p>Anggaplah Anda sedang merakit mobil. Unit testing adalah proses menguji setiap komponen (roda, baut, mesin) secara terpisah, *sebelum* Anda merakitnya menjadi satu mobil utuh.</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Pola Inti: Arrange, Act, Assert (AAA) -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-8">
+                        <h2 class="text-2xl font-bold text-white mb-5 text-center">2. Pola Inti: Arrange, Act, Assert (AAA)</h2>
+                        <p class="text-center text-sm mb-6 -mt-3 text-slate-400">Hampir semua unit test ditulis menggunakan pola 3 langkah sederhana ini.</p>
+                        <div class="flex flex-col md:flex-row items-stretch justify-between space-y-4 md:space-y-0 md:space-x-4">
+                            
+                            <!-- Step 1: Arrange -->
+                            <div class="flex-1 text-center p-5 bg-slate-700 rounded-lg flex flex-col items-center justify-center">
+                                <i data-feather="database" class="w-10 h-10 mx-auto text-sky-400 mb-2"></i>
+                                <h3 class="text-xl font-bold text-white">1. Arrange (Atur)</h3>
+                                <p class="text-sm">Menyiapkan kondisi awal dan semua data yang diperlukan untuk tes. (Setup).</p>
+                            </div>
+                            
+                            <!-- Arrow -->
+                            <div class="flex items-center justify-center">
+                                <i data-feather="chevron-right" class="w-12 h-12 text-slate-500 hidden md:block"></i>
+                                <i data-feather="chevron-down" class="w-12 h-12 text-slate-500 md:hidden"></i>
+                            </div>
+
+                            <!-- Step 2: Act -->
+                            <div class="flex-1 text-center p-5 bg-slate-700 rounded-lg flex flex-col items-center justify-center">
+                                <i data-feather="play-circle" class="w-10 h-10 mx-auto text-sky-400 mb-2"></i>
+                                <h3 class="text-xl font-bold text-white">2. Act (Aksi)</h3>
+                                <p class="text-sm">Menjalankan/memanggil *function* atau *method* yang sedang diuji.</p>
+                            </div>
+
+                            <!-- Arrow -->
+                            <div class="flex items-center justify-center">
+                                <i data-feather="chevron-right" class="w-12 h-12 text-slate-500 hidden md:block"></i>
+                                <i data-feather="chevron-down" class="w-12 h-12 text-slate-500 md:hidden"></i>
+                            </div>
+
+                            <!-- Step 3: Assert -->
+                            <div class="flex-1 text-center p-5 bg-slate-700 rounded-lg flex flex-col items-center justify-center">
+                                <i data-feather="check-circle" class="w-10 h-10 mx-auto text-green-400 mb-2"></i>
+                                <h3 class="text-xl font-bold text-white">3. Assert (Pastikan)</h3>
+                                <p class="text-sm">Memverifikasi bahwa hasil dari "Aksi" sesuai dengan yang diharapkan (*Expected Result*).</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 3. Contoh Praktis (Pola AAA dengan Pytest) -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-8">
+                        <h2 class="text-2xl font-bold text-white mb-4">3. Contoh Praktis (Pola AAA dengan Pytest)</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            <!-- Kode Aplikasi -->
+                            <div>
+                                <h3 class="font-semibold text-white mb-2">Kode Aplikasi (shopping_cart.py)</h3>
+                                <pre class="bg-slate-900 rounded p-4 text-sm font-mono overflow-x-auto"><code>class ShoppingCart:
+    def __init__(self):
+        self.items = []
+
+    def add(self, item: str):
+        self.items.append(item)
+
+    def get_items(self) -> list:
+        return self.items
+</code></pre>
+                            </div>
+                            <!-- Kode Test -->
+                            <div>
+                                <h3 class="font-semibold text-white mb-2">Kode Test (test_shopping_cart.py)</h3>
+                                <pre class="bg-slate-900 rounded p-4 text-sm font-mono overflow-x-auto"><code>def test_add_item_to_cart():
+    # 1. Arrange (Atur)
+    cart = ShoppingCart()
+    item = "apple"
+
+    # 2. Act (Aksi)
+    cart.add(item)
+
+    # 3. Assert (Pastikan)
+    assert cart.get_items() == ["apple"]
+</code></pre>
+                            </div>
+                        </div>
+                        <h3 class="text-xl font-semibold text-sky-400 mt-6 mb-2">Framework Populer</h3>
+                        <p class="text-sm">Setiap bahasa memiliki *framework*-nya sendiri. Yang paling populer adalah: <strong>JUnit 5</strong> (untuk Java), <strong>Jest</strong> (untuk JavaScript/React), dan <strong>Pytest</strong> (untuk Python).</p>
+                    </div>
+
+                    <!-- 4. Mengapa Penting? -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-6">
+                        <h2 class="text-2xl font-bold text-white mb-4">4. Mengapa Unit Testing Penting?</h2>
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-x-6 gap-y-3">
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="check-circle" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+                                <span><strong>Mendeteksi Bug Lebih Awal:</strong> Menemukan masalah di level fungsi, sebelum digabung.</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="check-circle" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+                                <span><strong>Menghemat Waktu & Biaya:</strong> Bug yang ditemukan di awal jauh lebih murah diperbaiki.</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="check-circle" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+                                <span><strong>Mempermudah Refactoring:</strong> Memberi kepercayaan diri untuk mengubah/memperbaiki kode tanpa merusak fitur lain.</span>
+                            </div>
+                            <div class="flex items-center space-x-3">
+                                <i data-feather="check-circle" class="w-5 h-5 text-green-400 flex-shrink-0"></i>
+                                <span><strong>Dokumentasi yang "Hidup":</strong> Test case berfungsi sebagai contoh cara penggunaan fungsi tersebut.</span>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Konten Materi 6 (Tersembunyi) -->
+                <!-- Konten Materi 6 (API Testing - IMPROVED) -->
+                <section id="materi-6" class="content-section text-slate-300 hidden">
+                    <h1 class="text-4xl font-bold text-white mb-6 pb-2 border-b border-slate-700">Ringkasan Materi: API Testing</h1>
+                    
+                    <!-- 1. Apa itu API Testing? -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-8">
+                        <h2 class="flex items-center text-2xl font-bold text-white mb-4">
+                            <i data-feather="server" class="w-7 h-7 mr-3 text-sky-400"></i>
+                            1. Apa itu API Testing?
+                        </h2>
+                        <p class="mb-4"><strong>API (Application Programming Interface) Testing</strong> adalah proses pengujian yang berfokus pada "lapisan tengah" atau "lapisan logika bisnis" dari sebuah aplikasi, tanpa melalui antarmuka pengguna (UI).</p>
+                        <div class="border-l-4 border-sky-500 pl-4 bg-slate-900/50 p-4 rounded-r-lg">
+                            <h4 class="font-semibold text-white">Analogi Sederhana: Restoran</h4>
+                            <ul class="list-disc list-inside text-sm">
+                                <li><strong>UI (Frontend)</strong> adalah pelayan dan menu tempat memesan.</li>
+                                <li><strong>API (Backend)</strong> adalah dapur yang menerima pesanan (request), memasaknya, dan mengirimkan makanan (response).</li>
+                                <li><strong>API Testing</strong> adalah proses menguji apakah dapur (API) dapat memasak pesanan (request) dengan benar dan menghasilkan makanan (response) yang sesuai, tanpa perlu berbicara dengan pelayan (UI).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 2. Anatomi Panggilan (Call) API -->
+                    <h2 class="text-3xl font-bold text-white mb-5 mt-8 text-center">2. Anatomi Panggilan (Call) API</h2>
+                    <div class="flex flex-col md:flex-row items-stretch justify-between space-y-4 md:space-y-0 md:space-x-4 mb-8">
+                        
+                        <!-- Request Card -->
+                        <div class="flex-1 bg-slate-800 rounded-lg shadow-lg p-6 border-t-4 border-sky-500">
+                            <h3 class="flex items-center text-2xl font-bold text-white mb-3">
+                                <i data-feather="arrow-up-right" class="w-6 h-6 mr-2 text-sky-400"></i>
+                                Client Request
+                            </h3>
+                            <p class="text-sm mb-3">Permintaan yang dikirim dari klien ke server.</p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="font-mono"><span class="bg-blue-600 text-white text-xs font-bold p-1 rounded">POST</span> <span class="bg-yellow-600 text-black text-xs font-bold p-1 rounded">GET</span> <span class="bg-green-600 text-white text-xs font-bold p-1 rounded">PUT</span> <span class="bg-red-600 text-white text-xs font-bold p-1 rounded">DEL</span><br><strong class="text-white">Method:</strong> Aksi yang ingin dilakukan.</li>
+                                <li><strong class="text-white">URL (Endpoint):</strong> Alamat server yang dituju.</li>
+                                <li><strong class="text-white">Headers:</strong> Info meta (misal: Tipe Konten, Kunci Otentikasi).</li>
+                                <li><strong class="text-white">Body:</strong> Data yang ingin dikirim (biasanya format JSON untuk POST/PUT).</li>
+                            </ul>
+                        </div>
+
+                        <!-- Arrow -->
+                        <div class="flex items-center justify-center flex-shrink-0 mx-0 md:mx-6">
+                            <i data-feather="arrow-right" class="w-12 h-12 text-slate-500 hidden md:block"></i>
+                            <i data-feather="arrow-down" class="w-12 h-12 text-slate-500 md:hidden"></i>
+                        </div>
+
+                        <!-- Response Card -->
+                        <div class="flex-1 bg-slate-800 rounded-lg shadow-lg p-6 border-t-4 border-green-500">
+                            <h3 class="flex items-center text-2xl font-bold text-white mb-3">
+                                <i data-feather="arrow-down-left" class="w-6 h-6 mr-2 text-green-400"></i>
+                                Server Response
+                            </h3>
+                            <p class="text-sm mb-3">Balasan yang diberikan server setelah memproses request.</p>
+                            <ul class="space-y-2 text-sm">
+                                <li class="font-mono"><span class="bg-green-600 text-white text-xs font-bold p-1 rounded">200 OK</span> <span class="bg-green-600 text-white text-xs font-bold p-1 rounded">201 Created</span><br><strong class="text-white">Status Code (Success):</strong> Permintaan berhasil.</li>
+                                <li class="font-mono"><span class="bg-yellow-600 text-black text-xs font-bold p-1 rounded">401 Unauthorized</span> <span class="bg-red-600 text-white text-xs font-bold p-1 rounded">404 Not Found</span><br><strong class="text-white">Status Code (Client Error):</strong> Kesalahan dari sisi klien (misal: salah URL, tidak login).</li>
+                                <li class="font-mono"><span class="bg-red-700 text-white text-xs font-bold p-1 rounded">500 Internal Error</span><br><strong class="text-white">Status Code (Server Error):</strong> Kesalahan terjadi di server.</li>
+                                <li><strong class="text-white">Body (Response):</strong> Data yang diminta (biasanya format JSON).</li>
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- 3. Mengapa Penting & Tools -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6">
+                        <!-- Card: Why Important -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h2 class="flex items-center text-2xl font-bold text-white mb-4">
+                                <i data-feather="shield-check" class="w-7 h-7 mr-3 text-teal-400"></i>
+                                3. Mengapa API Testing Penting?
+                            </h2>
+                            <ul class="list-disc list-inside space-y-2">
+                                <li><strong>Mendeteksi Bug Lebih Awal:</strong> Menemukan masalah di logika bisnis sebelum UI dibuat.</li>
+                                <li><strong>Meningkatkan Keandalan & Keamanan:</strong> Memastikan API aman dari akses tidak sah dan dapat menangani beban.</li>
+                                <li><strong>Mengukur Performa:</strong> Menguji seberapa cepat API merespons di bawah tekanan (load testing).</li>
+                                <li><strong>Mempercepat Pengembangan:</strong> Pengujian API sangat cepat dan mudah diotomatisasi.</li>
+                            </ul>
+                        </div>
+                        
+                        <!-- Card: Tools -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h2 class="flex items-center text-2xl font-bold text-white mb-4">
+                                <i data-feather="tool" class="w-7 h-7 mr-3 text-amber-400"></i>
+                                4. Tools Populer
+                            </h2>
+                            <div class="space-y-4">
+                                <div>
+                                    <h4 class="font-semibold text-white">Postman (Paling Populer)</h4>
+                                    <p class="text-sm">Sangat user-friendly, bagus untuk manajemen collection (kumpulan request), dan mudah untuk testing otomatis.</p>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-white">SoapUI</h4>
+                                    <p class="text-sm">Sangat kuat untuk skenario enterprise yang kompleks. Sangat baik untuk API berbasis SOAP (XML) dan mendukung pengujian security & load tingkat lanjut.</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </section>
+
+                <!-- Konten Materi 7 (Tersembunyi) -->
+                <!-- Konten Materi 7 (Cypress E2E Testing - IMPROVED) -->
+                <section id="materi-7" class="content-section text-slate-300 hidden">
+                    <h1 class="text-4xl font-bold text-white mb-6 pb-2 border-b border-slate-700">Pengantar Cypress (End-to-End Testing)</h1>
+                    
+                    <!-- 1. Apa itu Cypress? -->
+                    <div class="bg-slate-800 rounded-lg shadow-lg p-6 mb-8">
+                        <h2 class="flex items-center text-2xl font-bold text-white mb-4">
+              
+                            1. Apa itu Cypress?
+                        </h2>
+                        <p class="text-lg mb-4"><strong>Cypress</strong> adalah <strong>framework</strong> pengujian <strong>End-to-End</strong> (E2E) modern yang dirancang untuk menguji aplikasi web (seperti yang dibuat dengan React, Vue, Angular, dll). Cypress berjalan langsung di dalam browser, membuatnya sangat cepat dan interaktif.</p>
+                        
+                        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+                            <div class="border-l-4 border-emerald-500 pl-4">
+                                <h3 class_="font-semibold text-white">Posisi dalam Piramida Testing</h3>
+                                <p class="text-sm">Cypress berada di puncak piramida (End-to-End). Ia menguji aplikasi Anda secara keseluruhan, sama seperti cara pengguna asli berinteraksi dengannya (mengklik tombol, mengisi formulir, dll).</p>
+                            </div>
+                            <div class="border-l-4 border-emerald-500 pl-4">
+                                <h3 class="font-semibold text-white">Setup Sederhana</h3>
+                                <p class="text-sm">Hanya butuh Node.js. Instalasi dilakukan dengan satu perintah:</p>
+                                <pre class="bg-slate-900 rounded p-2 text-xs font-mono mt-2"><code>npm install cypress --save-dev</code></pre>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- 2. Keunggulan Utama (The "Cypress" Way) -->
+                    <h2 class="text-3xl font-bold text-white mb-4 mt-8">2. Keunggulan Utama Cypress</h2>
+                    <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-8">
+                        <!-- Card: Test Runner -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-5 text-center">
+                            <i data-feather="zap" class="w-10 h-10 mx-auto text-emerald-400 mb-3"></i>
+                            <h4 class="text-lg font-bold text-white">Test Runner Interaktif</h4>
+                            <p class="text-sm">Melihat tes berjalan secara real-time di browser saat Anda menyimpan kode.</p>
+                        </div>
+                        <!-- Card: Time Travel -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-5 text-center">
+                            <i data-feather="clock" class="w-10 h-10 mx-auto text-emerald-400 mb-3"></i>
+                            <h4 class="text-lg font-bold text-white">Time Travel Debugging</h4>
+                            <p class="text-sm">Cypress mengambil snapshot dari setiap langkah, memungkinkan untuk "mundur" dan melihat apa yang terjadi.</p>
+                        </div>
+                        <!-- Card: Auto Waits -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-5 text-center">
+                            <i data-feather="pause-circle" class="w-10 h-10 mx-auto text-emerald-400 mb-3"></i>
+                            <h4 class="text-lg font-bold text-white">Automatic Waits</h4>
+                            <p class="text-sm">Tidak perlu `sleep()` atau `wait(1000)`. Cypress otomatis menunggu elemen muncul sebelum beraksi.</p>
+                        </div>
+                        <!-- Card: Arsitektur -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-5 text-center">
+                            <i data-feather="cpu" class="w-10 h-10 mx-auto text-emerald-400 mb-3"></i>
+                            <h4 class="text-lg font-bold text-white">Arsitektur Modern</h4>
+                            <p class="text-sm">Berjalan di event loop yang sama dengan aplikasi, memberikan kontrol penuh dan kecepatan tinggi.</p>
+                        </div>
+                    </div>
+
+                    <!-- 3. Perintah Dasar & Studi Kasus -->
+                    <div class="grid grid-cols-1 lg:grid-cols-2 gap-6 mb-8">
+                        <!-- Kolom Kiri: Perintah Dasar -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-white mb-4">
+                                <i data-feather="terminal" class="w-5 h-5 mr-2 text-emerald-400"></i>
+                                3. Perintah Dasar (Sintaks)
+                            </h3>
+                            <p class="text-sm mb-4">Perintah Cypress sangat intuitif dan mudah dibaca:</p>
+                            <div class="space-y-3 font-mono text-sm">
+                                <div>
+                                    <pre class="bg-slate-900 rounded p-2"><code>cy.visit('https://..._')</code></pre>
+                                    <p class="text-xs text-slate-400 pl-2">// Membuka halaman web</p>
+                                </div>
+                                <div>
+                                    <pre class="bg-slate-900 rounded p-2"><code>cy.get('#username')</code></pre>
+                                    <p class="text-xs text-slate-400 pl-2">// Mencari elemen berdasarkan selector (ID, class)</p>
+                                </div>
+                                <div>
+                                    <pre class="bg-slate-900 rounded p-2"><code>cy.contains('Login')</code></pre>
+                                    <p class="text-xs text-slate-400 pl-2">// Mencari elemen berdasarkan teks di dalamnya</p>
+                                </div>
+                                <div>
+                                    <pre class="bg-slate-900 rounded p-2"><code>cy.get('#btn-login').click()</code></pre>
+                                    <p class="text-xs text-slate-400 pl-2">// Mengklik elemen</p>
+                                </div>
+                                <div>
+                                    <pre class="bg-slate-900 rounded p-2"><code>cy.get('#username').type('user_test')</code></pre>
+                                    <p class="text-xs text-slate-400 pl-2">// Mengetik ke dalam input field</p>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Kolom Kanan: Studi Kasus -->
+                        <div class="bg-slate-800 rounded-lg shadow-lg p-6">
+                            <h3 class="flex items-center text-xl font-bold text-white mb-4">
+                                <i data-feather="clipboard" class="w-5 h-5 mr-2 text-emerald-400"></i>
+                                4. Studi Kasus: Test Case Login
+                            </h3>
+                            <p class="text-sm mb-4">Contoh file tes Cypress (cypress/e2e/login.cy.js) untuk situs `saucedemo.com`:</p>
+                            <pre class="bg-slate-900 rounded p-4 text-sm font-mono overflow-x-auto"><code><span class="text-purple-400">describe</span>(<span class="text-green-400">'Login Test saucedemo.com'</span>, () => {
+
+  <span class="text-purple-400">beforeEach</span>(() => {
+    <span class="text-cyan-400">cy.visit</span>(<span class="text-green-400">'https://www.saucedemo.com/'</span>)
+  })
+
+  <span class="text-purple-400">it</span>(<span class="text-green-400">'TC01: Login dengan kredensial valid'</span>, () => {
+    <span class="text-cyan-400">cy.get</span>(<span class="text-green-400">'#user-name'</span>).<span class="text-cyan-400">type</span>(<span class="text-green-400">'standard_user'</span>)
+    <span class="text-cyan-400">cy.get</span>(<span class="text-green-400">'#password'</span>).<span class="text-cyan-400">type</span>(<span class="text-green-400">'secret_sauce'</span>)
+    <span class="text-cyan-400">cy.get</span>(<span class="text-green-400">'#login-button'</span>).<span class="text-cyan-400">click</span>()
+    <span class="text-cyan-400">cy.url</span>().<span class="text-cyan-400">should</span>(<span class="text-green-400">'include'</span>, <span class="text-green-400">'/inventory.html'</span>)
+  })
+
+  <span class="text-purple-400">it</span>(<span class="text-green-400">'TC02: Gagal login dengan password salah'</span>, () => {
+    <span class="text-cyan-400">cy.get</span>(<span class="text-green-400">'#user-name'</span>).<span class="text-cyan-400">type</span>(<span class="text-green-400">'standard_user'</span>)
+    <span class="text-cyan-400">cy.get</span>(<span class="text-green-400">'#password'</span>).<span class="text-cyan-400">type</span>(<span class="text-green-400">'wrong_pass'</span>)
+    <span class="text-cyan-400">cy.get</span>(<span class="text-green-400">'#login-button'</span>).<span class="text-cyan-400">click</span>()
+    <span class="text-cyan-400">cy.contains</span>(<span class="text-green-400">'do not match'</span>).<span class="text-cyan-400">should</span>(<span class="text-green-400">'be.visible'</span>)
+  })
+})</code></pre>
+                        </div>
+                    </div>
+                    
+                    <!-- 5. Tombol Dokumentasi -->
+                    <div class="mt-10 flex justify-center">
+                        <a href="https://docs.cypress.io" target="_blank" rel="noopener noreferrer" class="inline-flex items-center justify-center bg-emerald-600 hover:bg-emerald-500 text-white font-bold py-3 px-6 rounded-lg transition duration-200 shadow-lg">
+                            <i data-feather="external-link" class="w-5 h-5 mr-2"></i>
+                            Baca Dokumentasi Cypress
+                        </a>
+                    </div>
+                </section>
+
+            </div>
+        </main>
+    </div>
+
+    <!-- JavaScript untuk Interaktivitas Sidebar -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const links = document.querySelectorAll('.sidebar-link');
+            const sections = document.querySelectorAll('.content-section');
+            const sidebarNav = document.querySelector('#sidebar-nav');
+
+            // --- LOGIKA BARU UNTUK TOGGLE MENU ---
+            const menuToggle = document.getElementById('menu-toggle');
+            const menuClose = document.getElementById('menu-close');
+            const sidebar = document.getElementById('sidebar');
+            const menuOverlay = document.getElementById('menu-overlay');
+
+            function openMenu() {
+                sidebar.classList.remove('-translate-x-full');
+                menuOverlay.classList.remove('hidden');
+                // Sembunyikan tombol hamburger saat menu terbuka
+                menuToggle.classList.add('hidden');
+            }
+
+            function closeMenu() {
+                sidebar.classList.add('-translate-x-full');
+                menuOverlay.classList.add('hidden');
+                // Tampilkan lagi tombol hamburger
+                menuToggle.classList.remove('hidden');
+            }
+
+            // Event listener untuk tombol
+            menuToggle.addEventListener('click', openMenu);
+            menuClose.addEventListener('click', closeMenu);
+            menuOverlay.addEventListener('click', closeMenu);
+            
+            // --- LOGIKA LAMA (SWITCH KONTEN) ---
+            // Gunakan event delegation pada parent (ul)
+            sidebarNav.addEventListener('click', function(e) {
+                // Cari elemen 'a' terdekat yang diklik
+                const clickedLink = e.target.closest('a.sidebar-link');
+
+                // Jika tidak klik link, abaikan
+                if (!clickedLink) return;
+                
+                // Cegah link default
+                e.preventDefault(); 
+
+                const targetId = clickedLink.dataset.target;
+                const targetSection = document.getElementById(targetId);
+
+                if (!targetSection) return;
+
+                // 1. Sembunyikan semua section
+                sections.forEach(section => {
+                    section.classList.add('hidden');
+                });
+
+                // 2. Tampilkan section yang dituju
+                targetSection.classList.remove('hidden');
+
+                // 3. Hapus class 'active-link' dari semua link
+                links.forEach(link => {
+                    link.classList.remove('active-link');
+                });
+
+                // 4. Tambahkan class 'active-link' ke link yang diklik
+                clickedLink.classList.add('active-link');
+
+                // --- TAMBAHAN ---
+                // 5. Tutup menu jika di layar kecil (mobile)
+                // 1024px adalah breakpoint 'lg' Tailwind
+                if (window.innerWidth < 1024) {
+                    closeMenu();
+                }
+            });
+
+            // Inisialisasi ikon (termasuk ikon baru 'menu' dan 'x')
+            feather.replace();
+        });
+    </script>
+
+</body>
+</html>
